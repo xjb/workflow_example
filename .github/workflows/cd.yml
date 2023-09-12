@@ -1,0 +1,31 @@
+name: CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  # lint_and_test:
+  #   uses: xjb/workflow_example/.github/workflows/ci.yml@workflow-chain
+
+  build:
+    # needs:
+    #   - lint_and_test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: exit 0
+
+  deploy:
+    needs:
+      - build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: exit 0

@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - run: exit 0
+
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: exit 0
