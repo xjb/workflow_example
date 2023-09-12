@@ -35,5 +35,6 @@ jobs:
         env:
           name: jsdaniell
           password: mypass
+          debug: true
       - run: cat msvs.json
       - run: cat msvs.yaml
