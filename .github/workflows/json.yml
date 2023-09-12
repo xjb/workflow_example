@@ -21,7 +21,7 @@ jobs:
       - uses: jsdaniell/create-json@v1.2.2
         with:
           name: "new-json-file.json"
-          json: '{"name":"jsdaniell", "password":"mypass"}'
+          # json: '{"name":"jsdaniell", "password":"mypass"}'
       - run: cat new-json-file.json
 
   variable-substitution:
