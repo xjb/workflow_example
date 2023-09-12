@@ -27,8 +27,9 @@ jobs:
   variable-substitution:
     runs-on: ubuntu-latest
     steps:
-      - run: echo '{"name":"", "password":""}' > msvs.json
-      - run: echo -e "name:\npassword:\n" > msvs.yaml
+      - run: |
+          echo '{"name":"", "password":""}' > msvs.json
+          echo -e "name:\npassword:\n" > msvs.yaml
       - uses: microsoft/variable-substitution@v1 
         with:
           files: msvs.json, msvs.yaml
@@ -36,5 +37,6 @@ jobs:
           name: jsdaniell
           password: mypass
           debug: true
-      - run: cat msvs.json
-      - run: cat msvs.yaml
+      - run: |
+          cat msvs.json
+          cat msvs.yaml
