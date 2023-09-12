@@ -11,7 +11,7 @@ jobs:
     uses: xjb/workflow_example/.github/workflows/ci.yml@main
 
   build:
-    needs: [integration]
+    needs: [ "integration" ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,7 +23,7 @@ jobs:
           retention-days: 1
 
   deploy:
-    needs: [build]
+    needs: [ "build" ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v3
