@@ -7,23 +7,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint_and_test:
+  integration:
     uses: xjb/workflow_example/.github/workflows/ci.yml@main
 
   build:
-    needs:
-      - lint_and_test
-
+    needs: [ "integration" ]
     runs-on: ubuntu-latest
-
     steps:
+      - uses: actions/checkout@v3
       - run: exit 0
+      - uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: .
+          retention-days: 1
 
   deploy:
-    needs:
-      - build
-
+    needs: [ "build" ]
     runs-on: ubuntu-latest
-
     steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: artifact
       - run: exit 0
