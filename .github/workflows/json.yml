@@ -27,7 +27,7 @@ jobs:
   variable-substitution:
     runs-on: ubuntu-latest
     steps:
-      - run: echo {} > msvs.json
+      - run: echo '{"name":"", "password":""}' > msvs.json
       - uses: microsoft/variable-substitution@v1 
         with:
           files: msvs.json
