@@ -13,5 +13,14 @@ jobs:
           file: my-file.json
           field: description
           value: my custom data
-          parse_json: true
       - run: cat my-file.json
+
+  create-json:
+    runs-on: ubuntu-latest
+    steps:
+      # - run: echo {} > new-json-file.json
+      - uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: "new-json-file.json"
+          json: '{"name":"jsdaniell", "password":"mypass"}'
+      - run: cat new-json-file.json
