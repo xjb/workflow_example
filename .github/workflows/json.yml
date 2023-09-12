@@ -49,8 +49,8 @@ jobs:
           script: |
             return JSON.stringify(
               {
-                name: jsdaniell
-                password: mypass
+                name: "jsdaniell",
+                password: "mypass"
               }
             )
       - uses: jsdaniell/create-json@v1.2.2
