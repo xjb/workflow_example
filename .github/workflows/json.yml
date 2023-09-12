@@ -7,34 +7,54 @@ jobs:
   action-set-json-field:
     runs-on: ubuntu-latest
     steps:
-      - run: echo {} > my-file.json
+      - run: echo {} > action-set-json-field.json
       - uses: jossef/action-set-json-field@v2.1
         with:
-          file: my-file.json
+          file: action-set-json-field.json
           field: description
           value: my custom data
-      - run: cat my-file.json
+      - run: cat action-set-json-field.json
 
   create-json:
     runs-on: ubuntu-latest
     steps:
       - uses: jsdaniell/create-json@v1.2.2
         with:
-          name: "new-json-file.json"
+          name: create-json.json
           json: '{"name":"jsdaniell", "password":"mypass"}'
-      - run: cat new-json-file.json
+      - run: cat create-json.json
 
   variable-substitution:
     runs-on: ubuntu-latest
     steps:
-      - run: echo '{"name":"", "password":""}' > msvs.json
-      - run: echo -e "name:\npassword:\n" > msvs.yaml
+      - run: echo '{"name":"", "password":""}' > variable-substitution.json
+      - run: echo -e "name:\npassword:\n" > variable-substitution.yaml
       - uses: microsoft/variable-substitution@v1 
         with:
-          files: msvs.json, msvs.yaml
+          files: variable-substitution.json, variable-substitution.yaml
         env:
           name: jsdaniell
           password: mypass
           debug: true
-      - run: cat msvs.json
-      - run: cat msvs.yaml
+      - run: cat variable-substitution.json
+      - run: cat variable-substitution.yaml
+
+  github-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        id: create-body
+        with:
+          result-encoding: string
+          script: |
+            return JSON.stringify(
+              {
+                name: jsdaniell
+                password: mypass
+              }
+            )
+      - uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: github-script.json
+          json: ${{ steps.create-body.outputs.result }}
+      - run: cat github-script.json
