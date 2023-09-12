@@ -4,11 +4,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  json:
+  action-set-json-field:
     runs-on: ubuntu-latest
     steps:
+      - run: echo {} > my-file.json
       - uses: jossef/action-set-json-field@v2.1
         with:
           file: my-file.json
           field: description
           value: my custom data
+          # parse_json: true
+      - run: cat my-file.json
