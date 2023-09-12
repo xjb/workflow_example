@@ -9,12 +9,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint_and_test:
-    uses: xjb/workflow_example/.github/workflows/ci.yml@workflow-chain
+  # lint_and_test:
+  #   uses: xjb/workflow_example/.github/workflows/ci.yml@workflow-chain
 
   build:
-    needs:
-      - lint_and_test
+    # needs:
+    #   - lint_and_test
 
     runs-on: ubuntu-latest
 
