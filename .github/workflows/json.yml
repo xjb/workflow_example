@@ -18,9 +18,19 @@ jobs:
   create-json:
     runs-on: ubuntu-latest
     steps:
-      # - run: echo {} > new-json-file.json
       - uses: jsdaniell/create-json@v1.2.2
         with:
           name: "new-json-file.json"
           json: '{"name":"jsdaniell", "password":"mypass"}'
       - run: cat new-json-file.json
+
+  variable-substitution:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: microsoft/variable-substitution@v1 
+        with:
+          files: 'msvs.json, msvs.yml, msvs.config'
+        env:
+          name: jsdaniell
+          password: mypass
+      # - run: cat msvs.json
