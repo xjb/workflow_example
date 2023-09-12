@@ -13,5 +13,5 @@ jobs:
           file: my-file.json
           field: description
           value: my custom data
-          # parse_json: true
+          parse_json: true
       - run: cat my-file.json
