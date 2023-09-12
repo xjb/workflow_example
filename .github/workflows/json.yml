@@ -27,10 +27,11 @@ jobs:
   variable-substitution:
     runs-on: ubuntu-latest
     steps:
+      - run: echo {} > msvs.json
       - uses: microsoft/variable-substitution@v1 
         with:
-          files: 'msvs.json, msvs.yml, msvs.config'
+          files: msvs.json
         env:
           name: jsdaniell
           password: mypass
-      # - run: cat msvs.json
+      - run: cat msvs.json
